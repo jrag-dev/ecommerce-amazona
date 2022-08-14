@@ -15,6 +15,11 @@
 }
 
 
+.contenedor {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
 
 header {
@@ -40,7 +45,7 @@ h1 {
 }
 
 .products {
-  width: 75%;
+  width: 100%;
   max-width: 1400px;
   margin: 1rem auto;
   display: flex;
