@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "api creada con express js y mongodb para un ecommerce",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./server.js",
+    "start": "node ./server.js"
+  },
+  "keywords": [
+    "express",
+    "js",
+    "node",
+    "js",
+    "mongodb",
+    "jsonwebtoken",
+    "bcrystjs"
+  ],
+  "author": "José Alvarado",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
