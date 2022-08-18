@@ -1,7 +1,9 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async';
+import LoaderComponent from '../components/LoaderComponent';
+
 import ProductComponent from '../components/ProductComponent'
 
 import ProductsContext from '../context/products/productsContext'
@@ -9,7 +11,7 @@ import data from '../data'
 
 const HomePage = () => {
 
-  const { productos, obtenerProductos } = useContext(ProductsContext)
+  const { productos, loading, error, obtenerProductos } = useContext(ProductsContext)
 
   useEffect(() => {
     obtenerProductos()
@@ -17,15 +19,29 @@ const HomePage = () => {
 
   return (
     <section className="contenedor">
-      <h1>Featured Products</h1>
+      <Helmet>
+        <title>Amazona | Home</title>
+      </Helmet>
+      { !loading && <h1>Featured Products</h1>}
       <article className="products">
         {
-          productos.map(product => (
-            <ProductComponent
-              key={product.slug}
-              product={product}
-            />
-          ))
+          loading
+            ? (
+              <div className="centrado">
+                <LoaderComponent/>
+              </div>
+            )
+            : error ? (
+              <div>Error</div>
+            )
+            : (
+              productos.map(product => (
+                <ProductComponent
+                  key={product.slug}
+                  product={product}
+                />
+              ))
+            )
         }
       </article>
     </section>

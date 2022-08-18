@@ -2,3 +2,9 @@
 .red {
   background-color: red;
 }
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
