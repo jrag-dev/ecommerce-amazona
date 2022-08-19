@@ -31,7 +31,8 @@ const CartState = ({ children }) => {
       dispatch({
         type: AGREGAR_PRODUCTO_CARRITO,
         payload: {
-          productoCarrito: respuesta.data
+          productoCarrito: respuesta.data,
+          cantidad: 1
         }
       })
     } catch (error) {
@@ -39,9 +40,34 @@ const CartState = ({ children }) => {
     }
   }
 
+  const updateCantidadCart = async ( producto, cantidad ) => {
+
+    try {
+      const respuesta = await clienteAxios.get(`/products/${producto._id}`)
+
+      dispatch({
+        type: AGREGAR_PRODUCTO_CARRITO,
+        payload: {
+          productoCarrito: respuesta.data,
+          cantidad: cantidad
+        }
+      })
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const deleteCartItem = async (producto) => {
+
+    console.log('delete item: ', producto._id)
+  }
+
   const datos = {
     carrito: state.carrito,
-    addCarrito
+    addCarrito,
+    updateCantidadCart,
+    deleteCartItem
   }
   return (
     <CartContext.Provider value={datos}>

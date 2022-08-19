@@ -7,6 +7,7 @@ export default (state, action) => {
     case AGREGAR_PRODUCTO_CARRITO:
 
       let productoCarrito = action.payload.productoCarrito
+      let cantidadCarrito = action.payload.cantidad
 
       let existeProductoCarrito = state.carrito.carritoItems.find(
         (item) => item.productoCarrito._id === productoCarrito._id
@@ -22,14 +23,14 @@ export default (state, action) => {
         return disponible
       }
 
-      console.log(disponibleFn())
-
       const carritoItems = disponibleFn() 
         ? (
             existeProductoCarrito 
             ? state.carrito.carritoItems.map((item) => 
               item.productoCarrito._id === productoCarrito._id 
-              ? { ...item, cantidad: item.cantidad + 1} 
+              ? existeProductoCarrito.cantidad < cantidadCarrito
+                ? { ...item, cantidad: item.cantidad + 1} 
+                : { ...item, cantidad: item.cantidad - 1} 
               : item
             )
             : [...state.carrito.carritoItems, { productoCarrito, cantidad: 1}]
@@ -43,6 +44,7 @@ export default (state, action) => {
           carritoItems
         }
       }
+    
     default:
       return state
   }

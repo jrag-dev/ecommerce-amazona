@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async';
+import { AiOutlineLeft } from "react-icons/ai";
 
 import RatingComponent from '../components/RatingComponent'
 import ProductsContext from '../context/products/productsContext'
@@ -40,7 +41,7 @@ const ProductPage = () => {
       {
         !error && (
           <div className="contenedor_link">
-            <Link className="link_button" to="/">Volver</Link>
+            <Link className="link_button" to="/"><AiOutlineLeft className="link_button-svg" color="#FFF" size="20px"/>Volver</Link>
           </div>
         )
       }

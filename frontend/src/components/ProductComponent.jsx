@@ -22,11 +22,17 @@ const ProductComponent = ({ product }) => {
         <p className="product__price">
           <strong>${product.price}</strong>
         </p>
-        <div className="product__card">
-          <CartButtonComponent
-            producto={product}
-          />
-        </div>
+        {
+          product.countInStock === 0 
+          ? <p className="product__nodisponible">No disponible</p>
+          : (
+            <div className="product__card">
+              <CartButtonComponent
+                producto={product}
+              />
+            </div>
+          )
+        }
       </div>
     </div>
   )

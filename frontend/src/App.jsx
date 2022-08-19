@@ -8,6 +8,7 @@ import ProductsState from './context/products/productsState'
 import HomePage from './pages/HomePage'
 import ProductPage from './pages/ProductPage'
 import CartState from './context/cart/cartState';
+import CartPage from './pages/CartPage';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
               </header>
               <main className="main">
                 <Routes>
+                  <Route path="/cart" element={<CartPage/>}/>
                   <Route path="/product/slug/:slug" element={<ProductPage/>}/>
                   <Route path="/" element={<HomePage/>}/>
                 </Routes>
