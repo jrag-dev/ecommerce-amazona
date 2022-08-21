@@ -5,7 +5,7 @@ import cartReducer from './cartReducer'
 
 
 import {
-  AGREGAR_PRODUCTO_CARRITO, ELIMINAR_PRODUCTO_CARRITO, UPDATE_PRODUCTO_CARRITO
+  AGREGAR_PRODUCTO_CARRITO
 } from '../../types'
 import clienteAxios from '../../config/axios'
 
@@ -14,7 +14,7 @@ const CartState = ({ children }) => {
 
   const initialState = {
     carrito: {
-      carritoItems: localStorage.getItem('carritoItems') ? JSON.parse(localStorage.getItem('carritoItems')) : [],
+      carritoItems: [],
     }
   }
 
@@ -59,17 +59,7 @@ const CartState = ({ children }) => {
 
   const deleteCartItem = async (producto) => {
 
-    try {
-      const respuesta = await clienteAxios.get(`/products/${producto._id}`)
-
-      dispatch({
-        type: ELIMINAR_PRODUCTO_CARRITO,
-        payload: respuesta.data
-      })
-
-    } catch (error) {
-      console.log(error)
-    }
+    console.log('delete item: ', producto._id)
   }
 
   const datos = {

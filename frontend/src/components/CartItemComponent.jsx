@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai'
 import { MdDeleteForever } from "react-icons/md";
+import { Link } from 'react-router-dom';
 import CartContext from '../context/cart/cartContext';
 
 
@@ -17,7 +18,7 @@ const CartItemComponent = ({ carritoItem }) => {
       <img src={`${productoCarrito.image}`} alt={`${productoCarrito.name}`}/>
       </div>
       <div className="cart__item-name">
-        <p>{productoCarrito.name}</p>
+        <p><Link to={`/product/slug/${productoCarrito.slug}`}>{productoCarrito.name}</Link></p>
       </div>
       <div className="cart__item-cantidad">
         <button
