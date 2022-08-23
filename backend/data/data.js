@@ -1,7 +1,7 @@
 const data = {
   products: [
     {
-      _id: '1',
+      //_id: '1',
       name: 'Nike Slim Shirt',
       slug: 'nike-slim-shirt',
       category: 'Shirts',
@@ -15,7 +15,7 @@ const data = {
       status: true
     },
     {
-      _id: '2',
+      //_id: '2',
       name: 'Adidas Fit Shirt',
       slug: 'adidas-fit-shirt',
       category: 'Shirts',
@@ -29,21 +29,21 @@ const data = {
       status: false
     },
     {
-      _id: '3',
-      name: 'Lacoste Free Shirt',
-      slug: 'lacoste-free-shirt',
-      category: 'Shirts',
+      //_id: '3',
+      name: 'Nike Slim Pant',
+      slug: 'nike-slim-pant',
+      category: 'Pants',
       image: './images/p3.jpg',
-      price: 220,
-      countInStock: 0,
-      brand: 'adidas',
-      rating: 5.0,
-      numReviews: 17,
+      price: 25,
+      countInStock: 15,
+      brand: 'Nike',
+      rating: 4.5,
+      numReviews: 14,
       description: 'High quality product',
-      status: false
+      status: true
     },
     {
-      _id: '4',
+      //_id: '4',
       name: 'Adidas Fit Pant',
       slug: 'adidas-fit-pant',
       category: 'Pants',
