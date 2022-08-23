@@ -2,8 +2,12 @@ import express from 'express';
 import cors from 'cors';
 
 import data from './data/data.js'
+import dbConnect from './config/database.js';
 
 const app = express();
+
+// conección a la base de datos
+dbConnect()
 
 
 app.use(cors())
