@@ -620,6 +620,80 @@ h1 {
 }
 
 
+/* signin page */
+
+.signin__page {
+  width: 100%;
+  max-width: 1400px;
+  margin: 10rem auto;
+  padding: 1rem;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px auto;
+}
+
+.signin__title {
+  grid-column: 1/2;
+  grid-row: 1/2;
+
+  text-align: center;
+}
+
+.formulario {
+  grid-column: 1/2;
+  grid-row: 2/3;
+
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.formulario label {
+  display: block;
+  margin-top: .8rem;
+  margin-bottom: .3rem;
+}
+
+.formulario input {
+  padding: .6rem 1rem;
+  border: none;
+  border: 1px solid var(--gris2);
+  border-radius: .3rem;
+  outline: none;
+}
+
+.boton__signin {
+  display: block;
+  width: 150px;
+  padding: .6rem 1rem;
+  border: none;
+  background-color: var(--yellow🧮);
+  border-radius: .3rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  transition: background-color .5s ease-in-out;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.boton__signin:hover {
+  background-color: var(--yellow2);
+}
+
+
+
+
+
+
+
+
+
 /* sección del Footer */
 
 footer {
