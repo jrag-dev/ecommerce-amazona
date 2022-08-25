@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useContext } from 'react';
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+import AuthContext from '../context/auth/authContext';
+import { getError } from '../utils/utils';
 
 
 const initialState = {
@@ -10,13 +16,48 @@ const initialState = {
 }
 const SigninPage = () => {
 
+  let navigate = useNavigate()
+
+  const { search } = useLocation();
+  const redirectInUrl = new URLSearchParams(search).get('redirect');
+  const redirect = redirectInUrl ? redirectInUrl : '/';
+
+  const { user, error, message, signinFn } = useContext(AuthContext)
+
   const [dataForm, setDataForm] = useState(initialState)
+
+  useEffect(() => {
+    if (user) {
+      navigate(redirect)
+      toast.success(`Bienvenido, ${user.name}`)
+    }
+
+    if (error) {
+      toast.error('Email o Password incorrecto!')
+    }
+  }, [user, redirect, navigate, error])
 
   const handlerChange = (e) => {
     setDataForm({
       ...dataForm,
       [e.target.name]: e.target.value 
     })
+  }
+
+  const handlerSubmit = async e => {
+    e.preventDefault()
+
+    // pasamos al action
+    await signinFn(dataForm)
+
+    // reseteamos el form
+    setDataForm(initialState)
+    
+    console.log('a redireccionar')
+    
+    // navigate( redirect || '/')
+
+    console.log('redireccionó!')
   }
 
   return (
@@ -27,7 +68,10 @@ const SigninPage = () => {
 
       <h2 className="signin__title">Iniciar Sesión</h2>
       <section className="formulario">
-        <form className="formulario_auth">
+        <form 
+          className="formulario_auth"
+          onSubmit={handlerSubmit}
+        >
           <div className="campo">
             <label htmlFor="email">Email</label>
             <input 
@@ -52,7 +96,7 @@ const SigninPage = () => {
           </div>
           <button className="boton__signin">Signin</button>
           <div className="signin__link">
-            <p>Nuevo cliente? <Link to={`/signup?redirect/`}>Crea tu cuenta</Link></p>
+            <p>Nuevo cliente? <Link to={`/signup?redirect=${redirect}`}>Crea tu cuenta</Link></p>
           </div>
         </form>
       </section>

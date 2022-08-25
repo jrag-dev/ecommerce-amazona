@@ -1,5 +1,9 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import LinkContainer from 'react-bootstrap/NavDropdown';
+
+import AuthContext from '../context/auth/authContext'
 import CartContext from '../context/cart/cartContext'
 
 
@@ -7,6 +11,12 @@ import CartContext from '../context/cart/cartContext'
 const HeaderComponent = () => {
 
   const { carrito } = useContext(CartContext)
+  const { user, signoutFn } = useContext(AuthContext)
+
+
+  const signoutHandler = () => {
+    signoutFn()
+  }
 
   return (
     <div className="contenedor">
@@ -27,7 +37,35 @@ const HeaderComponent = () => {
                 }
             </li>
             <li>
-              <button>Logout</button>
+              {
+                user 
+                ? (
+                  <div className="dropdown">
+                    <div className="select">
+                      <Link className="selected" to="/">{user.name}</Link>
+                      <div className="caret"></div>
+                    </div>
+                    <ul className="dropdown-content"> 
+                      <li>
+                        <Link to='/profile'>User Profile</Link>
+                      </li>
+                      <li>
+                        <Link to='/orderhistory'>Order History</Link>
+                      </li>
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          to="#signout"
+                          onClick={signoutHandler}
+                        >Sign Out</Link>
+                      </li>
+                    </ul>
+                  </div>
+                )
+                : ( 
+                  <Link to="/signin">Sign in</Link>
+                )
+              }
             </li>
           </ul>
         </nav>
