@@ -26,3 +26,8 @@ export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const REGISTRO_EXITOSO = 'REGISTRO_EXITOSO';
 export const REGISTRO_ERROR = 'REGISTRO_ERROR';
 export const CERRAR_SESION = 'CERRAR_SESION';
+
+
+// Types para el context de shipping
+
+export const GUARDAR_SHIPPING_ADDRESS = 'GUARDAR_SHIPPING_ADDRESS';

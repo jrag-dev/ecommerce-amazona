@@ -27,12 +27,18 @@ export default (state, action) => {
     case CERRAR_SESION:
       localStorage.removeItem('token')
       localStorage.removeItem('user')
+      localStorage.removeItem('shippingAddress')
+      localStorage.removeItem('carritoItems')
       return {
         ...state,
         token: null,
         user: null,
         error: null,
-        cargando: false
+        cargando: false,
+        carrito: {
+          carritoItems: [],
+          shippingAddress: {},
+        }
       }
     default:
       return state;

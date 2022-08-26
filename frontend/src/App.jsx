@@ -16,6 +16,7 @@ import SignOutPage from './pages/SignOutPage';
 import AuthState from './context/auth/authState';
 import CartState from './context/cart/cartState';
 import ProductsState from './context/products/productsState'
+import ShippingAddressPage from './pages/ShippingAddressPage';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
                 </header>
                 <main className="main">
                   <Routes>
+                    <Route path="/shipping" element={<ShippingAddressPage/>}/>
                     <Route path="/cart" element={<CartPage/>}/>
                     <Route path="/product/slug/:slug" element={<ProductPage/>}/>
                     <Route path="/signin" element={<SigninPage/>}/>

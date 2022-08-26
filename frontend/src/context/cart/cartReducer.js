@@ -1,5 +1,5 @@
 import {
-  AGREGAR_PRODUCTO_CARRITO, ELIMINAR_PRODUCTO_CARRITO
+  AGREGAR_PRODUCTO_CARRITO, ELIMINAR_PRODUCTO_CARRITO, GUARDAR_SHIPPING_ADDRESS
 } from '../../types'
 
 export default (state, action) => {
@@ -71,6 +71,16 @@ export default (state, action) => {
         ...state,
         carrito: {
           carritoItems: carritoItem
+        }
+      }
+    
+    case GUARDAR_SHIPPING_ADDRESS:
+      localStorage.setItem('shippingAddress', JSON.stringify(action.payload))
+      return {
+        ...state,
+        carrito: {
+          ...state.carrito,
+          shippingAddress: action.payload,
         }
       }
     default:

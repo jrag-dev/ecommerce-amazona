@@ -5,7 +5,7 @@ import cartReducer from './cartReducer'
 
 
 import {
-  AGREGAR_PRODUCTO_CARRITO, ELIMINAR_PRODUCTO_CARRITO, UPDATE_PRODUCTO_CARRITO
+  AGREGAR_PRODUCTO_CARRITO, ELIMINAR_PRODUCTO_CARRITO, GUARDAR_SHIPPING_ADDRESS, UPDATE_PRODUCTO_CARRITO
 } from '../../types'
 import clienteAxios from '../../config/axios'
 
@@ -15,6 +15,9 @@ const CartState = ({ children }) => {
   const initialState = {
     carrito: {
       carritoItems: localStorage.getItem('carritoItems') ? JSON.parse(localStorage.getItem('carritoItems')) : [],
+      shippingAddress: localStorage.getItem('shippingAddress')
+        ? JSON.parse(localStorage.getItem('shippingAddress'))
+        : {},
     }
   }
 
@@ -72,11 +75,25 @@ const CartState = ({ children }) => {
     }
   }
 
+  // añadiendo la funcionalidad de shipping address 
+  const addShippingData = (data) => {
+    try {
+      dispatch({
+        type: GUARDAR_SHIPPING_ADDRESS,
+        payload: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
   const datos = {
     carrito: state.carrito,
     addCarrito,
     updateCantidadCart,
-    deleteCartItem
+    deleteCartItem,
+    addShippingData
   }
   return (
     <CartContext.Provider value={datos}>

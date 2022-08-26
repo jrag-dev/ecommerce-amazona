@@ -39,7 +39,7 @@ img {
 
 header {
   background-color: var(--darkblue);
-
+  height: 60px;
 }
 
 header a {
@@ -54,7 +54,7 @@ header a:hover {
 
 .header__nav-principal {
   padding: 15px;
-  height: 70px;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -92,8 +92,11 @@ header a:hover {
 .cart__numbers {
   top: 23px;
   right: 125px;
-  width: 25px;
-  height: 25px;
+  width: 22px;
+  text-align: center;
+  color: var(--white);
+  height: 22px;
+  margin-left: .2rem;
   background-color: var(--red);
   border-radius: 50%;
   display: flex;
@@ -111,7 +114,6 @@ h1 {
 .dropdown {
   width: 8rem;
   position: relative;
-  margin: 1rem;
   padding: 1rem 0;
 }
 
@@ -221,6 +223,14 @@ h1 {
   font-size: 1rem;
   font-weight: normal;
 }
+
+
+@media screen and (min-width: 998px) {
+  .dropdown {
+    margin: 1rem;
+  }
+}
+
 
 
 /* sección de productos (produtos page) */
@@ -770,17 +780,25 @@ h1 {
 
 .formulario label {
   display: block;
-  margin-top: .8rem;
+  margin-top: 1rem;
   margin-bottom: .3rem;
 }
 
 .formulario input {
-  padding: .6rem 1rem;
+  padding: .8rem 1rem;
+  font-size: 1rem;
   border: none;
   border: 1px solid var(--gris2);
   border-radius: .3rem;
   outline: none;
+  background-color: var(--white);
 }
+
+.formulario input::placeholder {
+  color: var(--gris2);
+  font-size: 1rem;
+}
+
 
 .boton__signin {
   display: block;
@@ -801,12 +819,61 @@ h1 {
 }
 
 
+/* Shipping page  */
+
+.shipping_page {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+.shipping_page h2 {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.shipping_page .formulario {
+  margin-top: 3rem;
+}
+
+.boton__shipping {
+  background-color: var(--yellow🧮);
+  margin-top: 2rem;
+  transition: background-color .3s ease-in-out;
+  width: 100%;
+  border: none;
+  padding: .8rem 1rem;
+  font-size: 1rem;
+  border-radius: .3rem;
+}
+
+.boton__shipping:hover {
+  background-color: var(--yellow2);
+}
 
 
+.checkout-steps {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 30px;
+  text-align: center;
+}
 
+.noactivo {
+  border-bottom: 0.2rem solid var(--gris2);
+  color: var(--gris2);
+}
 
+.checkout-steps > div.active {
+  background-color: transparent;
+  border-bottom: 0.2rem solid var(--yellow2);
+  color: var(--yellow2);
+}
 
+@media screen and (min-width: 998px) {
 
+}
 
 /* sección del Footer */
 

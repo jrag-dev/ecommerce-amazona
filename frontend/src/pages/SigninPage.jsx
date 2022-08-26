@@ -28,12 +28,13 @@ const SigninPage = () => {
 
   useEffect(() => {
     if (user) {
-      navigate(redirect)
       toast.success(`Bienvenido, ${user.name}`)
+      navigate(redirect)
     }
 
     if (error) {
       toast.error('Email o Password incorrecto!')
+      return;
     }
   }, [user, redirect, navigate, error])
 

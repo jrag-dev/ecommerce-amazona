@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import LinkContainer from 'react-bootstrap/NavDropdown';
 
@@ -9,6 +9,8 @@ import CartContext from '../context/cart/cartContext'
 
 
 const HeaderComponent = () => {
+
+  // const navigate = useNavigate()
 
   const { carrito } = useContext(CartContext)
   const { user, signoutFn } = useContext(AuthContext)
