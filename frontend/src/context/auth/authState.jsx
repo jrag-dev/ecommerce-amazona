@@ -1,8 +1,11 @@
 import React, { useReducer } from 'react'
 import clienteAxios from '../../config/axios'
-import { CERRAR_SESION, LOGIN_ERROR, LOGIN_EXITOSO } from '../../types'
+
+
+import { CERRAR_SESION, LOGIN_ERROR, LOGIN_EXITOSO, REGISTRO_ERROR, REGISTRO_EXITOSO } from '../../types'
 import AuthContext from './authContext'
 import authReducer from './authReducer'
+
 
 const AuthState = ({ children }) => {
 
@@ -34,6 +37,22 @@ const AuthState = ({ children }) => {
     }
   }
 
+  const signupFn = async (data) => {
+    try {
+      const respuesta = await clienteAxios.post('/users/signup', data)
+      dispatch({
+        type: REGISTRO_EXITOSO,
+        payload: respuesta.data
+      })
+    } catch (error) {
+      console.log(error)
+      dispatch({
+        type: REGISTRO_ERROR,
+        payload: error.response.data.message
+      })
+    }
+  }
+
   const signoutFn = () => {
     dispatch({
       type: CERRAR_SESION
@@ -46,6 +65,7 @@ const AuthState = ({ children }) => {
     error: state.error,
     cargando: state.cargando,
     signinFn,
+    signupFn,
     signoutFn
   }
 

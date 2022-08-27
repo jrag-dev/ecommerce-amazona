@@ -11,12 +11,12 @@ import HomePage from './pages/HomePage'
 import ProductPage from './pages/ProductPage'
 import CartPage from './pages/CartPage';
 import SigninPage from './pages/SigninPage';
-import SignOutPage from './pages/SignOutPage';
+import ShippingAddressPage from './pages/ShippingAddressPage';
+import SignUpPage from './pages/SignUpPage';
 
 import AuthState from './context/auth/authState';
 import CartState from './context/cart/cartState';
 import ProductsState from './context/products/productsState'
-import ShippingAddressPage from './pages/ShippingAddressPage';
 
 function App() {
 
@@ -37,7 +37,7 @@ function App() {
                     <Route path="/cart" element={<CartPage/>}/>
                     <Route path="/product/slug/:slug" element={<ProductPage/>}/>
                     <Route path="/signin" element={<SigninPage/>}/>
-                    <Route path="/signout" element={<SignOutPage/>}/>
+                    <Route path="/signup" element={<SignUpPage/>}/>
                     <Route path="/" element={<HomePage/>}/>
                   </Routes>
                 </main>

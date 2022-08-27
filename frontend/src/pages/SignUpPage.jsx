@@ -1,19 +1,24 @@
 import React, { useEffect } from 'react'
 import { useContext } from 'react';
 import { useState } from 'react'
+import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 import AuthContext from '../context/auth/authContext';
 
 
+
+
 const initialState = {
+  name: '',
   email: '',
-  password: ''
+  password: '',
+  confirm: '',
 }
-const SigninPage = () => {
+
+const SignUpPage = () => {
 
   let navigate = useNavigate()
 
@@ -21,21 +26,11 @@ const SigninPage = () => {
   const redirectInUrl = new URLSearchParams(search).get('redirect');
   const redirect = redirectInUrl ? redirectInUrl : '/';
 
-  const { user, error, message, signinFn } = useContext(AuthContext)
+  const { user, error, message, signupFn } = useContext(AuthContext)
 
   const [dataForm, setDataForm] = useState(initialState)
 
-  useEffect(() => {
-    if (user) {
-      toast.success(`Bienvenido, ${user.name}`)
-      navigate(redirect)
-    }
 
-    if (error) {
-      toast.error('Email o Password incorrecto!')
-      return;
-    }
-  }, [user, redirect, navigate, error])
 
   const handlerChange = (e) => {
     setDataForm({
@@ -44,31 +39,48 @@ const SigninPage = () => {
     })
   }
 
-  const handlerSubmit = async e => {
+  const handlerSubmit = e => {
     e.preventDefault()
 
+    // validaciones
+    if (dataForm.password.trim() !== dataForm.confirm.trim()) {
+      toast('Los password no coinciden!')
+      return;
+    }
+
     // pasamos al action
-    await signinFn(dataForm)
+    signupFn(dataForm)
 
     // reseteamos el form
     setDataForm(initialState)
     
-    // navigate( redirect || '/')
+    navigate( redirect || '/')
 
   }
 
   return (
     <article className="signin__page">
       <Helmet>
-        <title>Amazona | Sign In</title>
+        <title>Amazona | Sign Up</title>
       </Helmet>
 
-      <h2 className="signin__title">Iniciar Sesión</h2>
+      <h2 className="signin__title">Crear Cuenta</h2>
       <section className="formulario">
         <form 
           className="formulario_auth"
           onSubmit={handlerSubmit}
         >
+          <div className="campo">
+            <label htmlFor="name">Full Name</label>
+            <input 
+              type="text" 
+              name="name" 
+              id="name"
+              onChange={handlerChange}
+              value={dataForm.name}
+              required
+            />
+          </div>
           <div className="campo">
             <label htmlFor="email">Email</label>
             <input 
@@ -91,9 +103,20 @@ const SigninPage = () => {
               required
             />
           </div>
-          <button className="boton__signin">Sign In</button>
+          <div className="campo">
+            <label htmlFor="confirm">Confirm Password</label>
+            <input 
+              type="password" 
+              name="confirm" 
+              id="confirm"
+              onChange={handlerChange}
+              value={dataForm.confirm}
+              required
+            />
+          </div>
+          <button className="boton__signin">Sign Up</button>
           <div className="signin__link">
-            <p>Nuevo cliente? <Link to={`/signup?redirect=${redirect}`}>Crea tu cuenta</Link></p>
+            <p>Tienes una cuenta? <Link to={`/signin?redirect=${redirect}`}>Inicia sesión</Link></p>
           </div>
         </form>
       </section>
@@ -101,4 +124,5 @@ const SigninPage = () => {
   )
 }
 
-export default SigninPage
+
+export default SignUpPage

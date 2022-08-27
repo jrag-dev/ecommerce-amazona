@@ -1,4 +1,4 @@
-import { CERRAR_SESION, LOGIN_ERROR, LOGIN_EXITOSO } from "../../types";
+import { CERRAR_SESION, LOGIN_ERROR, LOGIN_EXITOSO, REGISTRO_ERROR, REGISTRO_EXITOSO } from "../../types";
 
 
 
@@ -6,6 +6,7 @@ import { CERRAR_SESION, LOGIN_ERROR, LOGIN_EXITOSO } from "../../types";
 export default (state, action) => {
   switch (action.type) {
     case LOGIN_EXITOSO:
+    case REGISTRO_EXITOSO:
       localStorage.setItem('token', action.payload.token)
       localStorage.setItem('user', JSON.stringify(action.payload.user))
       return {
@@ -15,6 +16,7 @@ export default (state, action) => {
         error: null,
         cargando: false
       }
+    case REGISTRO_ERROR:
     case LOGIN_ERROR:
       console.log('reducer error', action.payload)
       return {
