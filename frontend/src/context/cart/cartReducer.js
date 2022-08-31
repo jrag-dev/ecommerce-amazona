@@ -1,5 +1,5 @@
 import {
-  AGREGAR_PRODUCTO_CARRITO, ELIMINAR_PRODUCTO_CARRITO, GUARDAR_SHIPPING_ADDRESS
+  AGREGAR_PRODUCTO_CARRITO, CALCULAR_TOTAL_CARRITO, ELIMINAR_PRODUCTO_CARRITO, GUARDAR_METODO_PAGO, GUARDAR_SHIPPING_ADDRESS
 } from '../../types'
 
 export default (state, action) => {
@@ -50,6 +50,15 @@ export default (state, action) => {
           carritoItems
         }
       }
+    case CALCULAR_TOTAL_CARRITO:
+      localStorage.setItem('total', action.payload)
+      return {
+        ...state,
+        carrito: {
+          ...state.carrito,
+          total: action.payload
+        }
+      }
     case ELIMINAR_PRODUCTO_CARRITO:
       let producto = action.payload
 
@@ -81,6 +90,16 @@ export default (state, action) => {
         carrito: {
           ...state.carrito,
           shippingAddress: action.payload,
+        }
+      }
+    
+    case GUARDAR_METODO_PAGO:
+      localStorage.setItem('paymentMethod', action.payload)
+      return {
+        ...state,
+        carrito: {
+          ...state.carrito,
+          paymentMethod: action.payload
         }
       }
     default:

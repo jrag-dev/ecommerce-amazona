@@ -17,6 +17,7 @@ export const OCULTAR_CARRITO = 'OCULTAR_CARRITO';
 export const AGREGAR_PRODUCTO_CARRITO = 'AGREGAR_PRODUCTO_CARRITO';
 export const UPDATE_PRODUCTO_CARRITO = 'UPDATE_PRODUCTO_CARRITO';
 export const ELIMINAR_PRODUCTO_CARRITO = 'ELIMINAR_PRODUCTO_CARRITO';
+export const CALCULAR_TOTAL_CARRITO = 'CALCULAR_TOTAL_CARRITO';
 
 
 // Types para el context de autenticacion
@@ -31,3 +32,7 @@ export const CERRAR_SESION = 'CERRAR_SESION';
 // Types para el context de shipping
 
 export const GUARDAR_SHIPPING_ADDRESS = 'GUARDAR_SHIPPING_ADDRESS';
+
+// Types para el metodo de pago
+
+export const GUARDAR_METODO_PAGO = 'GUARDAR_METODO_PAGO';

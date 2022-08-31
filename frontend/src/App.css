@@ -875,6 +875,229 @@ h1 {
 
 }
 
+
+/* Payment page  */
+
+.payment {
+  width: 100%;
+}
+
+.payment h2 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.payment form {
+  width: 90%;
+  margin: 0 auto;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.payment .campo__payment {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.payment input {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+}
+
+.payment label {
+  padding: .7rem 1rem;
+  width: 100px;
+}
+
+.payment .campo__lleno {
+  position: absolute;
+  top: .5px;
+  left: 1.5px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid --var(--darkblue);
+  background-color: var(--green);
+  border-radius: 50%;
+}
+
+
+.payment .campo__vacio {
+  position: absolute;
+  top: .5px;
+  left: 1.5px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid --var(--darkblue);
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+.payment .campo__button {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--gris2);
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+.button__payment {
+  display: inline-block;
+  width: 130px;
+  padding: .6rem 1rem;
+  border: none;
+  border-radius: .3rem;
+  background-color: var(--yellow2);
+  color: var(--dark);
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.button__payment:hover {
+  background-color: #3a76f8;
+  color: var(--white);
+}
+
+
+/* Place order Page */
+
+.placeorder h2 {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.placeorder__grid {
+  margin-top: 2rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 150px 100px 350px auto;
+  grid-template-areas: 
+    "shipping"
+    "payment"
+    "resumen"
+    "products"
+  ;
+  gap: 1rem;
+}
+
+.placeorder__grid span {
+  margin-right: .5rem;
+}
+
+.placeorder__shipping {
+  grid-area: shipping;
+  border: 1px solid var(--gris2);
+  padding: 1rem;
+  margin: 0 auto;
+  width: 90%;
+  border-radius: .3rem;
+}
+
+.placeorder__shipping > * {
+  margin-bottom: .8rem;
+}
+
+.placeorder a {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--yellow2);
+  text-decoration: underline;
+}
+
+.placeorder__payment {
+  grid-area: payment;
+  border: 1px solid var(--gris2);
+  padding: 1rem;
+  margin: 0 auto;
+  width: 90%;
+  border-radius: .3rem;
+}
+
+.placeorder__payment > * {
+  margin-bottom: .5rem;
+}
+
+.placeorder__resumen {
+  grid-area: resumen;
+  border: 1px solid var(--gris2);
+  padding: 1rem;
+  margin: 0 auto;
+  width: 90%;
+  border-radius: .3rem;
+}
+
+.resumen__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.placeorder__resumen > * {
+  margin-bottom: .8rem;
+  border-bottom: 1px solid var(--gris2);
+  padding: .7rem 1rem;
+}
+
+.placeorder__resumen h3 {
+  border-bottom: none;
+}
+
+.placeorder__resumen button {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  background-color: var(--yellow2);
+  border: none;
+  padding: .5rem 1rem;
+  border-radius: .3rem;
+  font-size: 1rem;
+}
+
+.placeorder_products {
+  grid-area: products;
+}
+
+.placeorder_products a {
+  color: var(--darkbluelight);
+}
+
+.placeorder_products .cart__item-eliminar a {
+  color: var(--yellow2);
+}
+
+@media screen and (min-width: 998px) {
+  .placeorder__grid {
+    width: 100%;
+  
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 150px 120px auto;
+    grid-template-areas: 
+      "shipping shipping shipping resumen"
+      "payment payment payment resumen"
+      "products products products resumen"
+    ;
+  }
+
+  .placeorder__grid > * {
+    width: 100%;
+  }
+
+  .placeorder__resumen {
+    height: 350px;
+  }
+}
+
+
 /* sección del Footer */
 
 footer {

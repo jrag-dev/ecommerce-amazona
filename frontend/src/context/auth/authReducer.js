@@ -31,6 +31,7 @@ export default (state, action) => {
       localStorage.removeItem('user')
       localStorage.removeItem('shippingAddress')
       localStorage.removeItem('carritoItems')
+      localStorage.removeItem('paymentMethod')
       return {
         ...state,
         token: null,
@@ -40,6 +41,7 @@ export default (state, action) => {
         carrito: {
           carritoItems: [],
           shippingAddress: {},
+          paymentMethod: '',
         }
       }
     default:

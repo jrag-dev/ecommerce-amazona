@@ -17,6 +17,8 @@ import SignUpPage from './pages/SignUpPage';
 import AuthState from './context/auth/authState';
 import CartState from './context/cart/cartState';
 import ProductsState from './context/products/productsState'
+import PaymentMethodPage from './pages/PaymentMethodPage';
+import PlaceOrderPage from './pages/PlaceOrderPage';
 
 function App() {
 
@@ -33,6 +35,8 @@ function App() {
                 </header>
                 <main className="main">
                   <Routes>
+                    <Route path="/placeorder" element={<PlaceOrderPage/>}/>
+                    <Route path="/payment" element={<PaymentMethodPage/>}/>
                     <Route path="/shipping" element={<ShippingAddressPage/>}/>
                     <Route path="/cart" element={<CartPage/>}/>
                     <Route path="/product/slug/:slug" element={<ProductPage/>}/>

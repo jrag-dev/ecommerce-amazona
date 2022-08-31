@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { AiOutlineLeft } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,11 +12,13 @@ const CartPage = () => {
 
   let navigate = useNavigate()
 
-  const { carrito } = useContext(CartContext)
+  const { carrito, addTotal } = useContext(CartContext)
+  const { carritoItems } = carrito
 
-  carrito.carritoItems.map(item => (
-    console.log(item.productoCarrito.price)
-  ))
+  useEffect(() => {
+    const total = totalCarrito(carrito.carritoItems).total
+    addTotal(total)
+  }, [carritoItems])
 
   const totalCarrito = (arr) => {
     const carritoItem = arr.reduce((acc, item) => acc + item.cantidad, 0)
