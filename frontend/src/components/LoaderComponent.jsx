@@ -4,7 +4,9 @@ import '../styles/components/LoaderComponent.css'
 
 const LoaderComponent = () => {
   return (
-    <span className="loader">Load&nbsp;ng</span>  
+    <div className="loader__container">
+      <span className="loader"></span>
+    </div>
   )
 }
 

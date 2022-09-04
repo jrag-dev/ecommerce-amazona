@@ -25,11 +25,7 @@ const ShippingAddressPage = () => {
   const { carrito, addShippingData } = useContext(CartContext)
   const { user } = useContext(AuthContext)
 
-
-  console.log(carrito.shippingAddress)
-
   const [datos, setDatos] = useState(carrito.shippingAddress || initialState)
-
 
   useEffect(() => {
     if (!user) {
@@ -46,8 +42,6 @@ const ShippingAddressPage = () => {
 
   const handlerSubmit = e => {
     e.preventDefault()
-
-    console.log('enviando...')
 
     // validaciones
 

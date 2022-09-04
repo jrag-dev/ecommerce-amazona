@@ -4,6 +4,7 @@
   --dark: #242424;
   --darklight: #404040;
   --red: #e63946;
+  --pink: #ff5177;
   --green: #2a9d8f;
   --darkblue: #14213d;
   --darkbluelight: #1f325a;
@@ -970,6 +971,8 @@ h1 {
 /* Place order Page */
 
 .placeorder h2 {
+  font-size: 1.3rem;
+  padding: .5rem 1rem;
   margin-top: 2rem;
   text-align: center;
 }
@@ -987,6 +990,10 @@ h1 {
     "products"
   ;
   gap: 1rem;
+}
+
+.placeorder__grid.order {
+  grid-template-rows: 200px 140px 350px auto;
 }
 
 .placeorder__grid span {
@@ -1074,7 +1081,27 @@ h1 {
   color: var(--yellow2);
 }
 
+
+.resumen_total {
+  border-bottom: none;
+  font-weight: bold;
+}
+
+.placeorder__resumen.placeorder__resumen-order {
+  height: 300px;
+}
+
+.order__not {
+  background-color: var(--pink);
+  padding: 1rem;
+  border-radius: .3rem;
+  color: var(--white);
+}
+
 @media screen and (min-width: 998px) {
+  .placeorder h2 {
+    font-size: 1.4rem;
+  }
   .placeorder__grid {
     width: 100%;
   

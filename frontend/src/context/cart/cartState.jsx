@@ -5,7 +5,7 @@ import cartReducer from './cartReducer'
 
 
 import {
-  AGREGAR_PRODUCTO_CARRITO, CALCULAR_TOTAL_CARRITO, ELIMINAR_PRODUCTO_CARRITO, GUARDAR_METODO_PAGO, GUARDAR_SHIPPING_ADDRESS, UPDATE_PRODUCTO_CARRITO
+  AGREGAR_PRODUCTO_CARRITO, CALCULAR_TOTAL_CARRITO, CREATE_ORDER, ELIMINAR_PRODUCTO_CARRITO, GUARDAR_METODO_PAGO, GUARDAR_SHIPPING_ADDRESS, UPDATE_PRODUCTO_CARRITO
 } from '../../types'
 import clienteAxios from '../../config/axios'
 
@@ -15,7 +15,7 @@ const CartState = ({ children }) => {
   const initialState = {
     carrito: {
       carritoItems: localStorage.getItem('carritoItems') ? JSON.parse(localStorage.getItem('carritoItems')) : [],
-      total: localStorage.getItem('total') ? JSON.parse(localStorage.getItem('total')) : 0,
+      // total: localStorage.getItem('total') ? JSON.parse(localStorage.getItem('total')) : 0,
       shippingAddress: localStorage.getItem('shippingAddress')
         ? JSON.parse(localStorage.getItem('shippingAddress'))
         : {},
@@ -118,15 +118,38 @@ const CartState = ({ children }) => {
     }
   }
 
+  // Funcion que permite crear una nueva order
+  const createOrder = async (data, token) => {
+    try {
+      const respuesta = await clienteAxios.post('/orders', data,
+        {
+          headers: {
+            authorization: `Bearer ${token}` 
+          }
+        }
+      )
+      console.log(respuesta.data)
+      dispatch({
+        type: CREATE_ORDER,
+        payload: respuesta.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
 
   const datos = {
     carrito: state.carrito,
+    order: state.order,
     addCarrito,
     addTotal,
     updateCantidadCart,
     deleteCartItem,
     addShippingData,
-    addPaymentMethod
+    addPaymentMethod,
+    createOrder,
   }
   return (
     <CartContext.Provider value={datos}>

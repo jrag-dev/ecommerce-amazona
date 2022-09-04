@@ -35,7 +35,7 @@ const SigninPage = () => {
       toast.error('Email o Password incorrecto!')
       return;
     }
-  }, [user, redirect, navigate, error])
+  }, [user, redirect, error])
 
   const handlerChange = (e) => {
     setDataForm({

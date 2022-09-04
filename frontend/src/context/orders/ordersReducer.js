@@ -1,16 +1,14 @@
+import { GUARDAR_ORDER_ACTUAL } from "../../types"
 
 
 
 
 export default (state, action) => {
   switch (action.type) {
-    case GUARDAR_SHIPPING_ADDRESS:
+    case GUARDAR_ORDER_ACTUAL:
       return {
         ...state,
-        carrito: {
-          ...state.carrito,
-          shipping
-        }
+        order: action.payload.order
       }
     default:
       return state

@@ -36,3 +36,11 @@ export const GUARDAR_SHIPPING_ADDRESS = 'GUARDAR_SHIPPING_ADDRESS';
 // Types para el metodo de pago
 
 export const GUARDAR_METODO_PAGO = 'GUARDAR_METODO_PAGO';
+
+// Types para el context de create order
+
+export const CREATE_ORDER = 'CREATE_ORDER';
+
+// Types para mostrar la order actual
+
+export const GUARDAR_ORDER_ACTUAL = 'GUARDAR_ORDER_ACTUAL';

@@ -1,5 +1,5 @@
 import {
-  AGREGAR_PRODUCTO_CARRITO, CALCULAR_TOTAL_CARRITO, ELIMINAR_PRODUCTO_CARRITO, GUARDAR_METODO_PAGO, GUARDAR_SHIPPING_ADDRESS
+  AGREGAR_PRODUCTO_CARRITO, CALCULAR_TOTAL_CARRITO, CREATE_ORDER, ELIMINAR_PRODUCTO_CARRITO, GUARDAR_METODO_PAGO, GUARDAR_SHIPPING_ADDRESS
 } from '../../types'
 
 export default (state, action) => {
@@ -100,6 +100,21 @@ export default (state, action) => {
         carrito: {
           ...state.carrito,
           paymentMethod: action.payload
+        }
+      }
+    case CREATE_ORDER:
+      localStorage.removeItem('shippingAddress')
+      localStorage.removeItem('carritoItems')
+      localStorage.removeItem('paymentMethod')
+      return {
+        ...state,
+        order: action.payload.order,
+        carrito: {
+          carritoItems: [],
+          shippingAddress: {},
+          paymentMethod: '',
+          shippingPrice: 0,
+          totalPrice: 0
         }
       }
     default:

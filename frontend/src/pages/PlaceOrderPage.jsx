@@ -15,28 +15,57 @@ const PlaceOrderPage = () => {
 
   const navigate = useNavigate()
 
-  const { carrito } = useContext(CartContext)
-  const { carritoItems, total, shippingAddress, paymentMethod } = carrito
-  const { user } = useContext(AuthContext)
+  const { carrito, order, createOrder } = useContext(CartContext)
+  const { carritoItems, shippingAddress, paymentMethod } = carrito
+  const { token } = useContext(AuthContext)
 
   useEffect(() => {
     if (!paymentMethod) {
       navigate('/payment')
     }
-  }, [navigate])
 
-  
-  const shipping = 0.00;
-  
-  const tax = total*0.12;
-  
-  const ordertotal = total + tax;
+    if (order) {
+      navigate(`/order/${order._id}`)
+    } 
+  }, [navigate, order, paymentMethod])
 
-  console.log(total + tax)
-  
-  console.log( typeof total)
-  console.log( typeof tax)
-  console.log( typeof shipping)
+  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) /100 ;  // 123.2345 => 123.23
+
+  carrito.itemsPrice = round2(
+    carrito.carritoItems.reduce((acc, item) => acc + item.cantidad * item.productoCarrito.price, 0)
+  )
+
+  carrito.shippingPrice = carrito.itemsPrice > 100 ? round2(0) : round2(10)
+  carrito.taxPrice = round2(0.15 * carrito.itemsPrice)
+  carrito.totalPrice = carrito.itemsPrice + carrito.shippingPrice + carrito.taxPrice
+
+  const handlerPlaceOrder = () => {
+
+    const orderItem = carrito.carritoItems.map(item => (
+        {
+          slug: item.productoCarrito.slug,
+          name: item.productoCarrito.name,
+          image: item.productoCarrito.image,
+          price: item.productoCarrito.price,
+          cantidad: item.cantidad,
+          producto: item.productoCarrito
+        }
+    ))
+
+    const data = {
+      orderItems: orderItem,
+      shippingAddress: carrito.shippingAddress,
+      paymentMethod: carrito.paymentMethod,
+      itemsPrice: carrito.itemsPrice,
+      shippingPrice: carrito.shippingPrice,
+      taxPrice: carrito.taxPrice,
+      totalPrice: carrito.totalPrice,
+    }
+
+    createOrder(data, token)
+
+    // navigate(`/order/${order._id}`)
+  }
   
   return (
     <div className="placeorder contenedor">
@@ -66,27 +95,30 @@ const PlaceOrderPage = () => {
           <h3>Order Summary</h3>
           <div className="resumen__row">
             <p>Items:</p>
-            <p>$ {total.toFixed(2)}</p>
+            <p>$ {carrito.itemsPrice.toFixed(2)}</p>
           </div>
           <div className="resumen__row">
             <p>Shipping:</p>
-            <p>$ {shipping.toFixed(2)}</p>
+            <p>$ {carrito.shippingPrice.toFixed(2)}</p>
           </div>
           <div className="resumen__row">
             <p>Tax:</p>
-            <p>$ {tax.toFixed(2)}</p>
+            <p>$ {carrito.taxPrice.toFixed(2)}</p>
           </div>
           <div className="resumen__row">
             <p>Orden Total:</p>
-            <p>$ {ordertotal}</p>
+            <p>$ {carrito.totalPrice}</p>
           </div>
-          <button>Place Order</button>
+          <button
+            onClick={handlerPlaceOrder}
+            disabled={carritoItems.length === 0}
+          >Place Order</button>
         </div>
 
         <div className="placeorder_products">
           {
-            carritoItems.map(({_id, productoCarrito, cantidad }) => (
-              <div className="cart__item" key={_id}>
+            carritoItems.map(({productoCarrito, cantidad }) => (
+              <div className="cart__item" key={productoCarrito._id}>
                 <div className="cart__item-img">
                   <img src={`${productoCarrito.image}`} alt={`${productoCarrito.name}`}/>
                 </div>
