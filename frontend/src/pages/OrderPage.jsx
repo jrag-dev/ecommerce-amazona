@@ -122,7 +122,7 @@ const OrderPage = () => {
                 <div className="placeorder__payment">
                   <h3>Payment</h3>
                   <p><span>Method:</span>{order.paymentMethod}</p>
-                  <p className={ order.isPaid === true ? 'order__paid' : 'paid__not'}>{ order.isPaid === true ? `Paid at ${order.paidAt}` : 'Not paid'}</p>
+                  <p className={ order.isPaid === true ? 'order__paid' : 'order__not'}>{ order.isPaid === true ? `Paid at ${order.paidAt}` : 'Not paid'}</p>
                   <p>{new Date().toUTCString()}</p>
                 </div>
         

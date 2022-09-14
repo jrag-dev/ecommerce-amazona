@@ -1,4 +1,4 @@
-import { GUARDAR_CLIENTE_ID, GUARDAR_ORDER_ACTUAL, PAY_FAIL, PAY_REQUEST, PAY_RESET, PAY_SUCCESS } from "../../types"
+import { GUARDAR_CLIENTE_ID, GUARDAR_ORDER_ACTUAL, OBTENER_ORDERS, PAY_FAIL, PAY_REQUEST, PAY_RESET, PAY_SUCCESS } from "../../types"
 
 
 
@@ -36,6 +36,11 @@ export default (state, action) => {
         ...state,
         loadingPay: false,
         successPay: false
+      }
+    case OBTENER_ORDERS:
+      return {
+        ...state,
+        orders: action.payload.orders
       }
     default:
       return state

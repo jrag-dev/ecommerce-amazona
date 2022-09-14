@@ -40,6 +40,7 @@ export const GUARDAR_METODO_PAGO = 'GUARDAR_METODO_PAGO';
 // Types para el context de create order
 
 export const CREATE_ORDER = 'CREATE_ORDER';
+export const OBTENER_ORDERS = 'OBTENER_ORDERS';
 
 // Types para mostrar la order actual
 

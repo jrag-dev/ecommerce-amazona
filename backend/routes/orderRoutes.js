@@ -45,6 +45,20 @@ orderRouter.get('/:id',
   })
 
 )
+
+orderRouter.get('/',
+  isAuth,
+  expressAsyncHandler( async (req, res, next) => {
+    const orders = await Order.find({})
+
+    if (orders) {
+      res.status(200).json( { orders })
+    } else { 
+      res.status(401).send({ message: 'No hay ordenes de pago.'})
+    }
+  })
+)
+
   
 orderRouter.put(
   '/:id/pay',

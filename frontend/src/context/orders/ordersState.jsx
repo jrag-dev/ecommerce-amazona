@@ -5,7 +5,7 @@ import ordersReducer from './ordersReducer'
 
 import clienteAxios from '../../config/axios'
 
-import { GUARDAR_CLIENTE_ID, GUARDAR_ORDER_ACTUAL, GUARDAR_SHIPPING_ADDRESS, PAY_REQUEST, PAY_SUCCESS } from '../../types'
+import { GUARDAR_CLIENTE_ID, GUARDAR_ORDER_ACTUAL, OBTENER_ORDERS, PAY_REQUEST, PAY_SUCCESS } from '../../types'
 
 
 const OrdersState = ({ children}) => {
@@ -15,6 +15,7 @@ const OrdersState = ({ children}) => {
     loadingPay: false,
     successPay: false,
     clienteId: null,
+    orders: [],
   }
 
   const [state, dispatch] = useReducer(ordersReducer, initialState)
@@ -95,15 +96,36 @@ const OrdersState = ({ children}) => {
   }
 
 
+  const obtenerOrders = async (token) => {
+    try {
+      const { data } = await clienteAxios.get('/orders', 
+        {
+           headers: {
+             authorization: `Bearer ${token}` 
+           }
+        }
+      )
+      dispatch({
+        type: OBTENER_ORDERS,
+        payload: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
 
   const datos = {
+    orders: state.orders,
     order: state.order,
     clienteId: state.clienteId,
     loadingPay: state.loadingPay,
     successPay: state.successPay,
     getOrder,
     loadPaypalScriptFn,
-    onApproveFn
+    onApproveFn,
+    obtenerOrders
   }
 
   return (

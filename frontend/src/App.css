@@ -1133,6 +1133,45 @@ h1 {
   }
 }
 
+/* estilos para orderhistorypage  */
+
+table {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  margin-top: 2rem;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: var(--darkbluelight);
+  color: #FFF;
+  text-align: left;
+  border-bottom: 5px solid #ccc;
+}
+
+th, td {
+  padding: 1rem;
+}
+
+tr:nth-child(even) {
+  background-color: #ccc;
+}
+
+tr:hover {
+  background-color: var(--darkbluelight);
+  color: var(--yellow2);
+}
+
+.btn-details {
+  padding: .6rem 1rem;
+  background-color: var(--yellow2);
+  color: var(--white);
+  border: none;
+  border-radius: .3rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
 
 /* sección del Footer */
 
