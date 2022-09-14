@@ -44,3 +44,10 @@ export const CREATE_ORDER = 'CREATE_ORDER';
 // Types para mostrar la order actual
 
 export const GUARDAR_ORDER_ACTUAL = 'GUARDAR_ORDER_ACTUAL';
+
+// Types para la sescion de pagos con paypal
+export const GUARDAR_CLIENTE_ID = 'GUARDAR_CLIENTE_ID';
+export const PAY_REQUEST = 'PAY_REQUEST';
+export const PAY_SUCCESS = 'PAY_SUCCESS';
+export const PAY_FAIL = 'PAY_FAIL';
+export const PAY_RESET = 'PAY_RESET';

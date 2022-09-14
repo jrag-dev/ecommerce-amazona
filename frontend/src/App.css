@@ -1098,6 +1098,15 @@ h1 {
   color: var(--white);
 }
 
+
+.order__paid {
+  background-color: var(--green);
+  padding: 1rem;
+  border-radius: .3rem;
+  color: var(--white);
+}
+
+
 @media screen and (min-width: 998px) {
   .placeorder h2 {
     font-size: 1.4rem;

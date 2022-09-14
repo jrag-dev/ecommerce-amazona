@@ -5,13 +5,16 @@ import ordersReducer from './ordersReducer'
 
 import clienteAxios from '../../config/axios'
 
-import { GUARDAR_ORDER_ACTUAL, GUARDAR_SHIPPING_ADDRESS } from '../../types'
+import { GUARDAR_CLIENTE_ID, GUARDAR_ORDER_ACTUAL, GUARDAR_SHIPPING_ADDRESS, PAY_REQUEST, PAY_SUCCESS } from '../../types'
 
 
 const OrdersState = ({ children}) => {
 
   const initialState = {
-    order : {}
+    order : {},
+    loadingPay: false,
+    successPay: false,
+    clienteId: null,
   }
 
   const [state, dispatch] = useReducer(ordersReducer, initialState)
@@ -29,7 +32,6 @@ const OrdersState = ({ children}) => {
         }
       );
 
-      console.log(respuesta.data)
       dispatch({
         type: GUARDAR_ORDER_ACTUAL,
         payload: respuesta.data
@@ -40,9 +42,68 @@ const OrdersState = ({ children}) => {
     }
   }
 
+
+  const loadPaypalScriptFn = async (token) => {
+    try {      
+      const { data: clienteId } = await clienteAxios.get('/keys/paypal', 
+         {
+           headers: {
+             authorization: `Bearer ${token}` 
+           }
+         }
+       )
+      console.log(clienteId)
+      dispatch({
+        type: GUARDAR_CLIENTE_ID,
+        payload: clienteId
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  function onApproveFn(data, actions, order, token) {
+
+    if (!order) return
+
+    console.log(order, token)
+    return actions.order.capture().then( async function (details) {
+      try {
+        const name = details.payer.name.given_name;
+        console.log(`Transaction completed by ${name}`)
+        dispatch({
+          type: PAY_REQUEST
+        })
+        const { data } = await clienteAxios.put(`/orders/${order._id}/pay`, 
+        details,
+        {
+          headers: {
+            authorization: `Bearer ${token}` 
+          }
+        }
+      )
+
+      dispatch({
+        type: PAY_SUCCESS,
+        payload: data
+      })
+        
+      } catch (error) {
+        console.log(error)
+      }
+    })
+  }
+
+
+
   const datos = {
     order: state.order,
-    getOrder
+    clienteId: state.clienteId,
+    loadingPay: state.loadingPay,
+    successPay: state.successPay,
+    getOrder,
+    loadPaypalScriptFn,
+    onApproveFn
   }
 
   return (

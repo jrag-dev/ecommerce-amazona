@@ -3,6 +3,7 @@ import { HashRouter, Routes, Route }  from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 import './App.css'
 
@@ -31,30 +32,33 @@ function App() {
           <CartState>
             <OrdersState>
               <HelmetProvider>
-                <div className="app">
-                  <ToastContainer position="bottom-center" limit={1}/>
-                  <header className="header">
-                    <HeaderComponent/>
-                  </header>
-                  <main className="main">
-                    <Routes>
-                      <Route path="/order/:id" element={<OrderPage/>}/>
-                      <Route path="/placeorder" element={<PlaceOrderPage/>}/>
-                      <Route path="/payment" element={<PaymentMethodPage/>}/>
-                      <Route path="/shipping" element={<ShippingAddressPage/>}/>
-                      <Route path="/cart" element={<CartPage/>}/>
-                      <Route path="/product/slug/:slug" element={<ProductPage/>}/>
-                      <Route path="/signin" element={<SigninPage/>}/>
-                      <Route path="/signup" element={<SignUpPage/>}/>
-                      <Route path="/" element={<HomePage/>}/>
-                    </Routes>
-                  </main>
-                  {/* <footer>
-                    <div className="footer">
-                      Todos los derechos reservados 
-                    </div>
-                  </footer> */}
-                </div>
+                <PayPalScriptProvider deferLoading={true}>
+
+                  <div className="app">
+                    <ToastContainer position="bottom-center" limit={1}/>
+                    <header className="header">
+                      <HeaderComponent/>
+                    </header>
+                    <main className="main">
+                      <Routes>
+                        <Route path="/order/:id" element={<OrderPage/>}/>
+                        <Route path="/placeorder" element={<PlaceOrderPage/>}/>
+                        <Route path="/payment" element={<PaymentMethodPage/>}/>
+                        <Route path="/shipping" element={<ShippingAddressPage/>}/>
+                        <Route path="/cart" element={<CartPage/>}/>
+                        <Route path="/product/slug/:slug" element={<ProductPage/>}/>
+                        <Route path="/signin" element={<SigninPage/>}/>
+                        <Route path="/signup" element={<SignUpPage/>}/>
+                        <Route path="/" element={<HomePage/>}/>
+                      </Routes>
+                    </main>
+                    {/* <footer>
+                      <div className="footer">
+                        Todos los derechos reservados 
+                      </div>
+                    </footer> */}
+                  </div>
+                </PayPalScriptProvider>
               </HelmetProvider>
             </OrdersState>
           </CartState>
