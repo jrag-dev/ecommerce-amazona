@@ -24,3 +24,8 @@
     1. Create order Page
     2. Create order history api
     3. use api in the frontend
+9. Create Profile Page
+    1. Get user info from context
+    2. Show user information
+    3. Create user update api
+    4. Update user info

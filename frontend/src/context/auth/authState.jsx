@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import clienteAxios from '../../config/axios'
 
 
-import { CERRAR_SESION, LOGIN_ERROR, LOGIN_EXITOSO, REGISTRO_ERROR, REGISTRO_EXITOSO } from '../../types'
+import { CERRAR_SESION, LOGIN_ERROR, LOGIN_EXITOSO, REGISTRO_ERROR, REGISTRO_EXITOSO, UPDATE_PROFILE } from '../../types'
 import AuthContext from './authContext'
 import authReducer from './authReducer'
 
@@ -27,7 +27,6 @@ const AuthState = ({ children }) => {
         type: LOGIN_EXITOSO,
         payload: respuesta.data
       })
-      console.log('state sucess', respuesta.data)
     } catch (error) {
       dispatch({
         type: LOGIN_ERROR,
@@ -59,6 +58,25 @@ const AuthState = ({ children }) => {
     })
   }
 
+
+  const updateProfile = async (datos, token) => {
+    try {
+      const { data } = await clienteAxios.put('/users/profile', datos, 
+        {
+           headers: {
+             authorization: `Bearer ${token}` 
+           }
+        }
+      )
+      dispatch({
+        type: UPDATE_PROFILE,
+        payload: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const datos = {
     token: state.token,
     user: state.user,
@@ -66,7 +84,8 @@ const AuthState = ({ children }) => {
     cargando: state.cargando,
     signinFn,
     signupFn,
-    signoutFn
+    signoutFn,
+    updateProfile
   }
 
   return (

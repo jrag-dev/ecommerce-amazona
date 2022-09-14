@@ -18,6 +18,7 @@ const HeaderComponent = () => {
 
   const signoutHandler = () => {
     signoutFn()
+    window.location.href = '/signin';
   }
 
   return (
@@ -44,7 +45,7 @@ const HeaderComponent = () => {
                 ? (
                   <div className="dropdown">
                     <div className="select">
-                      <Link className="selected" to="/">{user.name}</Link>
+                      <Link className="selected" to="/">{user.name.split(' ')[0]}</Link>
                       <div className="caret"></div>
                     </div>
                     <ul className="dropdown-content"> 

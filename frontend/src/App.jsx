@@ -23,6 +23,7 @@ import PlaceOrderPage from './pages/PlaceOrderPage';
 import OrderPage from './pages/OrderPage';
 import OrdersState from './context/orders/ordersState';
 import OrderHistoryPage from './pages/OrderHistoryPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
                     </header>
                     <main className="main">
                       <Routes>
+                        <Route path="/profile" element={<ProfilePage/>}/>
                         <Route path="/orderhistory" element={<OrderHistoryPage/>}/>
                         <Route path="/order/:id" element={<OrderPage/>}/>
                         <Route path="/placeorder" element={<PlaceOrderPage/>}/>
