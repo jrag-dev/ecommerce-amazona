@@ -123,7 +123,6 @@ const OrderPage = () => {
                   <h3>Payment</h3>
                   <p><span>Method:</span>{order.paymentMethod}</p>
                   <p className={ order.isPaid === true ? 'order__paid' : 'order__not'}>{ order.isPaid === true ? `Paid at ${order.paidAt}` : 'Not paid'}</p>
-                  <p>{new Date().toUTCString()}</p>
                 </div>
         
                 <div className="placeorder__resumen placeorder__resumen-order">
@@ -143,7 +142,6 @@ const OrderPage = () => {
                   <div className="resumen__row resumen_total">
                     <p>Orden Total:</p>
                     <p>$ {order.totalPrice}</p>
-                    <p>{order.isPaid ? 'Paid' : 'Not Paid'}</p>
                   </div>
                   {
                     !order.isPaid ? (
