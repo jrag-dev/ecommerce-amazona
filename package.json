@@ -1,0 +1,22 @@
+{
+  "name": "ecommerce-amazona",
+  "version": "1.0.0",
+  "description": "## Lessons",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd backend && npm install && cd ../frontend && npm install && npm run build",
+    "start": "node backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrag-dev/ecommerce-amazona.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jrag-dev/ecommerce-amazona/issues"
+  },
+  "homepage": "https://github.com/jrag-dev/ecommerce-amazona#readme"
+}
