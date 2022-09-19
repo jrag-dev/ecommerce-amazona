@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react'
-import logger from 'use-reducer-logger';
 
 import clienteAxios from '../../config/axios'
 import ProductsContext from './productsContext'
@@ -25,10 +24,7 @@ const ProductsState = ({ children }) => {
     error: null
   }
 
-  const [state, dispatch] = useReducer(
-    import.meta.env.VITE_NODE_ENV === 'development' ? logger(productsReducer) : productsReducer,
-    initialState
-  );
+  const [state, dispatch] = useReducer(productsReducer, initialState);
 
   // Funciones que cambiarán el state de productos
 
