@@ -2,6 +2,10 @@
   "name": "backend",
   "type": "module",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
+  },
   "description": "api creada con express js y mongodb para un ecommerce",
   "main": "index.js",
   "scripts": {
