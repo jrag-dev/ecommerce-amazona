@@ -4,7 +4,9 @@ import {
   OBTENER_PRODUCTOS_ERROR,
   OBTENER_PRODUCTO,
   OBTENER_PRODUCTO_SUCCESS,
-  OBTENER_PRODUCTO_ERROR
+  OBTENER_PRODUCTO_ERROR,
+  SEARCH_PRODUCT_SUCCESS,
+  SEARCH_PRODUCT_ERROR
 } from "../../types";
 
 
@@ -20,7 +22,8 @@ export default (state, action) => {
     case OBTENER_PRODUCTOS_SUCCESS:
       return {
         ...state,
-        productos: action.payload,
+        productos: action.payload.products,
+        categories: action.payload.categories,
         loading: false,
         error: null
       }
@@ -42,6 +45,18 @@ export default (state, action) => {
         ...state,
         producto: null,
         loading: false,
+        error: action.payload
+      }
+    case SEARCH_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        productsSearch: action.payload,
+        error: false
+      }
+    case SEARCH_PRODUCT_ERROR:
+      return {
+        ...state,
+        productsSearch: [],
         error: action.payload
       }
     default:

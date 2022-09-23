@@ -1,0 +1,40 @@
+
+
+.search {
+  width: 300px;
+}
+
+
+.form {
+  width: 100%;
+  position: relative;
+}
+
+.input-search {
+  padding: 10px 16px;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  font-size: 16px;
+}
+
+.btn-search {
+  position: absolute;
+  top: 1px;
+  right: 5px;
+
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 4px;
+  background-color: #FFF;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-search svg {
+  font-size: 20px;
+}

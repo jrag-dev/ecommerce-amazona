@@ -11,7 +11,9 @@ import {
   OBTENER_PRODUCTOS_ERROR,
   OBTENER_PRODUCTO,
   OBTENER_PRODUCTO_SUCCESS,
-  OBTENER_PRODUCTO_ERROR
+  OBTENER_PRODUCTO_ERROR,
+  SEARCH_PRODUCT_SUCCESS,
+  SEARCH_PRODUCT_ERROR
 } from "../../types";
 
 
@@ -19,6 +21,8 @@ const ProductsState = ({ children }) => {
 
   const initialState = {
     productos: [],
+    productsSearch: [],
+    categories: [],
     producto: null,
     loading: false,
     error: null
@@ -36,6 +40,7 @@ const ProductsState = ({ children }) => {
 
     try {
       const respuesta = await clienteAxios.get('/products')
+      console.log(respuesta.data)
 
       dispatch({
         type: OBTENER_PRODUCTOS_SUCCESS,
@@ -75,14 +80,32 @@ const ProductsState = ({ children }) => {
     }
   }
 
+  const searchProduct = async (query) => {
+    try {
+      const respuesta = await clienteAxios.post(`/products/search/${query}`);
+      dispatch({
+        type: SEARCH_PRODUCT_SUCCESS,
+        payload: respuesta.data
+      })
+    } catch (error) {
+      dispatch({
+        type: SEARCH_PRODUCT_ERROR,
+        payload: error.response.data.message
+      })
+    }
+  }
+
 
   const datos = {
     productos: state.productos,
+    categories: state.categories,
+    productsSearch: state.productsSearch,
     producto: state.producto,
     loading: state.loading,
     error: state.error,
     obtenerProductos,
-    obtenerProducto
+    obtenerProducto,
+    searchProduct
   }
 
   return (

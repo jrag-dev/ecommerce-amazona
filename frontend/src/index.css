@@ -39,18 +39,25 @@ a {
   width: 100%;
 
   display: grid;
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 70px auto auto 100px;
   grid-template-areas: 
-  "header header header header"
-  "main main main main"
-  "main main main main"
-  "footer footer footer footer"
+  "header header header header header"
+  "sidebar main main main main"
+  "sidebar main main main main"
+  "footer footer footer footer footer"
   ;
 }
 
 .header {
   grid-area: header;
   width: 100%;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  grid-column: 1/2;
+  grid-row: 2/6;
 }
 
 .main {

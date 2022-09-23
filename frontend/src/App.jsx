@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HashRouter, Routes, Route }  from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async';
 import { ToastContainer } from 'react-toastify';
@@ -24,8 +24,18 @@ import OrderPage from './pages/OrderPage';
 import OrdersState from './context/orders/ordersState';
 import OrderHistoryPage from './pages/OrderHistoryPage';
 import ProfilePage from './pages/ProfilePage';
+import SidebarComponent from './components/SidebarComponent';
 
 function App() {
+
+  const [openMenu, setOpenMenu] = useState(false)
+  const [widthScreen, setWidthScreen] = useState(1900)
+
+  window.addEventListener("resize", function(e){
+    // tu código aquí
+    setWidthScreen(e.currentTarget.innerWidth);
+  });
+
 
   return (
     <HashRouter>
@@ -41,6 +51,7 @@ function App() {
                     <header className="header">
                       <HeaderComponent/>
                     </header>
+                    <SidebarComponent/>
                     <main className="main">
                       <Routes>
                         <Route path="/profile" element={<ProfilePage/>}/>

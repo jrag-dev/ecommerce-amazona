@@ -2,9 +2,12 @@ import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import LinkContainer from 'react-bootstrap/NavDropdown';
+import { FaShoppingCart } from "react-icons/fa";
 
 import AuthContext from '../context/auth/authContext'
 import CartContext from '../context/cart/cartContext'
+import SearchProductComponent from './SearchProductComponent';
+import SearchComponent from './SearchComponent';
 
 
 
@@ -24,11 +27,12 @@ const HeaderComponent = () => {
   return (
     <div className="contenedor">
       <div className="header__nav-principal">
-        <Link to="/">Amazona</Link>
+        <Link to="/" className="titulo">Amazona</Link>
+        <SearchComponent/>
         <nav>
           <ul className="header__nav-secundaria">
             <li className="card_position">
-              <Link className="cart-nav" to="/cart">Cart</Link>
+              <Link className="cart-nav" to="/cart"><FaShoppingCart/>Cart</Link>
                 { 
                   carrito.carritoItems.length > 0 
                   ? (
