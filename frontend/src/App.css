@@ -150,15 +150,15 @@ h1 {
 }
 
 .select {
-  background-color: var(--darkblue);
+  background-color: var(--dark);
   color: var(--white);
-  border: 2px solid var(--darkblue);
+  border: 2px solid var(--darklight);
 
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   border-radius: .3rem;
-  padding: 10px 5px;
+  padding: .4rem 5px;
   cursor: pointer;
   transition: background 0.3s;
 }
@@ -169,8 +169,8 @@ h1 {
 }
 
 .select:hover {
-  border: 2px solid var(--white);
-  background: var(--darkbluelight);
+  border: 2px solid var(--darklight);
+  background: var(--dark);
 }
 
 .selected {
@@ -191,13 +191,13 @@ h1 {
   padding: 0.2rem 0.5rem;
   display: none;
   position: absolute;
-  background: var(--darkblue);
+  background: var(--dark);
   border: 1px solid #363a43;
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
   border-bottom-left-radius: .3rem;
   border-bottom-right-radius: .3rem;
   color: #9fa5b5;
-  top: 4.23rem;
+  top: 4rem;
   left: 50%;
   width: 100%;
   transform: translateX(-50%);
@@ -278,26 +278,31 @@ h1 {
 .product {
   border: 1px solid var(--gris2);
   border-radius: 7px;
-  width: 300px
+  width: 250px;
+  height: 483px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .product img {
-  border-radius: 7px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   width: 100%;
 }
 
 .product__body {
   margin-top: -5px;
   background-color: var(--gris);
-  min-height: 120px;
+  min-height: 100px;
   padding: 1rem;
   padding-top: 1.5rem;
-  -radius: 7px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 .product__name {
   font-family: 'Open Sans', sans-serif;
-  color: var(--purple);
+  color: var(--darklight);
   font-size: 1.2rem;
   padding-bottom: 1rem;
 }
@@ -315,11 +320,11 @@ h1 {
 
 .product__button {
   display: block;
-  width: 50%;
+  width: 60%;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.5em 1.2em;
-  font-size: 1em;
+  font-size: 15px;
   font-weight: 500;
   font-family: inherit;
   background-color: var(--yellow🧮);
@@ -1170,7 +1175,7 @@ table {
 }
 
 thead {
-  background-color: var(--darkbluelight);
+  background-color: var(--darklight);
   color: #FFF;
   text-align: left;
   border-bottom: 5px solid #ccc;
@@ -1185,7 +1190,7 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-  background-color: var(--darkbluelight);
+  background-color: var(--darklight);
   color: var(--yellow2);
 }
 
@@ -1315,6 +1320,35 @@ tr:hover {
 
 
 
+/* Estilos para el botón de categorias */
+
+.btn-categorias {
+  background-color: var(--dark);
+  border: 2px solid var(--darklight);
+  color: var(--white);
+  font-size: 16px;
+  padding: .4rem 1rem;
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 130px;
+}
+
+.btn-categorias:hover .caret {
+  transform: rotate(180deg);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--yellow2);
+}
+
+.btn-categorias:hover {
+  color: var(--yellow2);
+}
+
 
 /* sección del Footer */
 
@@ -1331,4 +1365,15 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+
+
+
+/* Estilos para el sidebar */
+
+.sidebar {
+  background-color: var(--yellow2);
+  width: 100%;
+  height: 300px;
 }

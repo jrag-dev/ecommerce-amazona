@@ -28,13 +28,18 @@ import SidebarComponent from './components/SidebarComponent';
 
 function App() {
 
-  const [openMenu, setOpenMenu] = useState(false)
-  const [widthScreen, setWidthScreen] = useState(1900)
+  const [openMenu, setOpenMenu] = useState(false);
+  const [widthScreen, setWidthScreen] = useState(1900);
+  const [openSidebar, setOpenSidebar] = useState(false);
 
   window.addEventListener("resize", function(e){
     // tu código aquí
     setWidthScreen(e.currentTarget.innerWidth);
   });
+
+  const openSidebarFn = () => {
+    setOpenSidebar(!openSidebar);
+  }
 
 
   return (
@@ -49,9 +54,18 @@ function App() {
                   <div className="app">
                     <ToastContainer position="bottom-center" limit={1}/>
                     <header className="header">
-                      <HeaderComponent/>
+                      <HeaderComponent 
+                        openSidebar={openSidebar}
+                        openSidebarFn={openSidebarFn}
+                      />
+                      {
+                        openSidebar
+                        ? (
+                          <SidebarComponent/>
+                        )
+                        : null
+                      }
                     </header>
-                    <SidebarComponent/>
                     <main className="main">
                       <Routes>
                         <Route path="/profile" element={<ProfilePage/>}/>

@@ -61,6 +61,29 @@ productRouter.post('/search/:query', async (req, res, next) => {
   }
 })
 
+
+productRouter.post('/search/category/:query', async (req, res, next) => {
+  const { query } = req.params
+
+  let products;
+
+  if (query === 'all') {
+    products = await Product.find()
+  }
+  else {
+    products = await Product.find({ category: new RegExp(query, 'i') })
+  }
+  
+  if (products.length === 0) {
+    res.status(404).json({ message: 'Producto no encontrado'})
+    next()
+  }
+  else {
+    res.json(products)
+  }
+})
+
+
 productRouter.get('/categories', async (req, res, next) => {
   const products = await Product.find({ category });
 

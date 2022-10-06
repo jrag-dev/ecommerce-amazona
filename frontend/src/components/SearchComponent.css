@@ -1,7 +1,7 @@
 
 
 .search {
-  width: 300px;
+  width:500px;
 }
 
 
@@ -21,14 +21,15 @@
 
 .btn-search {
   position: absolute;
-  top: 1px;
-  right: 5px;
-
-  width: 35px;
-  height: 35px;
+  top: 0px;
+  right: 0px;
+  width: 45px;
+  height: 100%;
   border: none;
   border-radius: 4px;
-  background-color: #FFF;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  background-color: #febd69;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -37,4 +38,5 @@
 
 .btn-search svg {
   font-size: 20px;
+  color: #353535;
 }

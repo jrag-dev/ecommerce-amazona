@@ -11,7 +11,7 @@ import SearchComponent from './SearchComponent';
 
 
 
-const HeaderComponent = () => {
+const HeaderComponent = ({ openSidebar, openSidebarFn }) => {
 
   // const navigate = useNavigate()
 
@@ -24,10 +24,16 @@ const HeaderComponent = () => {
     window.location.href = '/signin';
   }
 
+  const openClickSidebar = () => {
+    openSidebarFn()
+  }
+
   return (
     <div className="contenedor">
       <div className="header__nav-principal">
         <Link to="/" className="titulo">Amazona</Link>
+        <button onClick={() => openClickSidebar()} className="btn-categorias">Categorias<div className="caret"></div>
+</button>
         <SearchComponent/>
         <nav>
           <ul className="header__nav-secundaria">

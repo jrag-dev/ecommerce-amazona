@@ -5,22 +5,30 @@ import ProductsContext from '../context/products/productsContext'
 import './SidebarComponent.css';
 
 
-const SidebarComponent = ({ widthScreen, openMenu, setOpenMenu }) => {
+const SidebarComponent = () => {
 
-  const { categories } = useContext(ProductsContext)
+  const { categories, searchProductCategory } = useContext(ProductsContext)
 
-  const handleClick = () => {
-    setOpenMenu(!openMenu)
+  const handleClick = (category) => {
+    searchProductCategory(category)
   }
 
 
   return (
     <aside className="sidebar activo">
       <div className="categorias">
-        <h3>Category</h3>
-        <p>Shirt</p>
-        <p>Weight</p>
-        <p>Pants</p>
+        <h3>Categories</h3>
+
+        <button onClick={() => handleClick('all')} className="btn">
+          <span>All</span>
+        </button>
+        {
+          categories.map((category, index) => (
+            <button key={index} onClick={() => handleClick(category)} className="btn">
+              <span>{category}</span>
+            </button>
+          ))
+        }
       </div>
     </aside>
   )

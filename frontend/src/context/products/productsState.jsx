@@ -94,6 +94,21 @@ const ProductsState = ({ children }) => {
       })
     }
   }
+  const searchProductCategory = async (query) => {
+    try {
+      const respuesta = await clienteAxios.post(`/products/search/category/${query}`);
+      dispatch({
+        type: SEARCH_PRODUCT_SUCCESS,
+        payload: respuesta.data
+      })
+    } catch (error) {
+      dispatch({
+        type: SEARCH_PRODUCT_ERROR,
+        payload: error.response.data.message
+      })
+    }
+  }
+
 
 
   const datos = {
@@ -105,7 +120,8 @@ const ProductsState = ({ children }) => {
     error: state.error,
     obtenerProductos,
     obtenerProducto,
-    searchProduct
+    searchProduct,
+    searchProductCategory
   }
 
   return (
